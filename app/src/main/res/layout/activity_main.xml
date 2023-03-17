@@ -24,64 +24,86 @@
             android:src="@drawable/logo"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/dark"
-                android:text="Bejelentkezés"
+                android:text="Log in"
                 android:id="@+id/logInButton"
                 android:fontFamily="@font/arial"
                 android:textSize="12dp"
                 android:textColor="@color/white"
-                android:layout_marginTop="10dp"/>
+                android:layout_margin="10dp"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
-                android:text="Regisztráció"
+                android:text="Register"
                 android:id="@+id/registerButton"
                 android:fontFamily="@font/arial"
                 android:textSize="12dp"
                 android:textColor="@color/black"
-                android:layout_marginTop="10dp"/>
-
-
+                android:layout_margin="10dp"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
-                android:text="Keresés"
+                android:text="Search"
                 android:id="@+id/searchButton"
                 android:fontFamily="@font/arial"
                 android:textSize="12dp"
                 android:textColor="@color/black"
-                android:layout_marginTop="10dp"/>
+                android:layout_margin="10dp"/>
 
         </LinearLayout>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email:"
-        android:id="@+id/editTextFirst"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password:"
-            android:id="@+id/editTextSecond"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:id="@+id/editTextThird"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:id="@+id/editTextFourth"/>
-    </LinearLayout>
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:id="@+id/editTextFirst"
+            android:fontFamily="@font/arial"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:id="@+id/editTextSecond"
+            android:fontFamily="@font/arial"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/editTextThird"
+            android:fontFamily="@font/arial"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/editTextFourth"
+            android:fontFamily="@font/arial"/>
+        <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:orientation="horizontal" >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:text="Continue"
+            android:id="@+id/continueButton"
+            android:fontFamily="@font/arial"
+            android:textSize="12dp"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+    </LinearLayout>
 </FrameLayout>

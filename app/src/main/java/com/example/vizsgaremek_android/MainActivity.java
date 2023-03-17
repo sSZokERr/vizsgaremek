@@ -39,9 +39,14 @@ public class MainActivity extends AppCompatActivity {
             registerButton.setTextColor(Color.WHITE);
             searchButton.setBackgroundColor(Color.TRANSPARENT);
             searchButton.setTextColor(Color.BLACK);
-            editTextThird.setVisibility(View.VISIBLE);
+
+            editTextFirst.setHint("User name");
             editTextSecond.setVisibility(View.VISIBLE);
+            editTextSecond.setHint("Email");
+            editTextThird.setVisibility(View.VISIBLE);
+            editTextThird.setHint("Password");
             editTextFourth.setVisibility(View.VISIBLE);
+            editTextFourth.setHint("Password again");
         });
 
         logInButton.setOnClickListener(v -> {
@@ -51,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
             logInButton.setTextColor(Color.WHITE);
             searchButton.setBackgroundColor(Color.TRANSPARENT);
             searchButton.setTextColor(Color.BLACK);
+
+            editTextFirst.setHint("Email");
+            editTextSecond.setHint("Password");
             editTextThird.setVisibility(View.GONE);
             editTextFourth.setVisibility(View.GONE);
         });
@@ -61,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
             logInButton.setTextColor(Color.BLACK);
             searchButton.setBackgroundColor(Color.BLACK);
             searchButton.setTextColor(Color.WHITE);
+
+            editTextFirst.setHint("Type artist name here");
             editTextThird.setVisibility(View.GONE);
             editTextSecond.setVisibility(View.GONE);
             editTextFourth.setVisibility(View.GONE);
