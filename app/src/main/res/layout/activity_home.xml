@@ -40,19 +40,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:src="@drawable/logo"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/postImage"/>
-            <TextView
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/postImage"
-                android:layout_centerHorizontal="true"
-                android:text="Profile name and commented text"
-                android:textColor="@color/black"/>
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/listView"
+                tools:listitem="@layout/image_adapters"/>
         </RelativeLayout>
     </LinearLayout>
 
