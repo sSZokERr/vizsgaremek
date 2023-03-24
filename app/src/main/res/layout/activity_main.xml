@@ -30,17 +30,17 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center">
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/dark"
+                android:background="@color/black"
                 android:text="Log in"
                 android:id="@+id/logInButton"
                 android:fontFamily="@font/arial"
                 android:textSize="12dp"
                 android:textColor="@color/white"
                 android:layout_margin="10dp"/>
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
@@ -50,7 +50,7 @@
                 android:textSize="12dp"
                 android:textColor="@color/black"
                 android:layout_margin="10dp"/>
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
@@ -87,22 +87,32 @@
             android:visibility="gone"
             android:id="@+id/editTextFourth"
             android:fontFamily="@font/arial"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/editTextFifth"
+            android:fontFamily="@font/arial"/>
         <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:orientation="horizontal" >
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/black"
-            android:text="Continue"
-            android:id="@+id/continueButton"
-            android:fontFamily="@font/arial"
-            android:textSize="12dp"
-            android:textColor="@color/white"
-            android:layout_margin="10dp"
-            android:layout_alignParentRight="true"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/continueButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/black"
+                android:fontFamily="@font/arial"
+                android:text="Continue"
+                android:textColor="@color/white"
+                android:textSize="12dp" />
 
         </RelativeLayout>
     </LinearLayout>
