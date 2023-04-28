@@ -3,7 +3,9 @@ package com.example.vizsgaremek_android;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,19 +13,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import java.io.IOException;
+
 import android.graphics.Color;
 import android.net.Uri;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.VideoView;
+
 import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView imageLogo;
     private Animation fadeIn;
-    private AppCompatButton registerButton, logInButton, searchButton, continueButton;
+    private AppCompatButton registerButton, logInButton, continueButton;
     private EditText editTextFirst, editTextSecond, editTextThird, editTextFourth, editTextFifth;
 
 
@@ -33,11 +38,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         init();
         VideoView videoview = (VideoView) findViewById(R.id.videoViewBackground);
-        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.background);
+        Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.background);
         videoview.setVideoURI(uri);
         videoview.start();
 
         imageLogo.startAnimation(fadeIn);
+
         continueButton.setOnClickListener(v1 -> {
             LogIn();
         });
@@ -47,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
             logInButton.setTextColor(Color.BLACK);
             registerButton.setBackgroundColor(Color.BLACK);
             registerButton.setTextColor(Color.WHITE);
-            searchButton.setBackgroundColor(Color.TRANSPARENT);
-            searchButton.setTextColor(Color.BLACK);
 
             editTextFirst.setHint("Fist name");
             editTextSecond.setVisibility(View.VISIBLE);
@@ -65,54 +69,22 @@ public class MainActivity extends AppCompatActivity {
             });
         });
         logInButton.setOnClickListener(v -> {
-            registerButton.setBackgroundColor(Color.TRANSPARENT);
-            registerButton.setTextColor(Color.BLACK);
-            logInButton.setBackgroundColor(Color.BLACK);
-            logInButton.setTextColor(Color.WHITE);
-            searchButton.setBackgroundColor(Color.TRANSPARENT);
-            searchButton.setTextColor(Color.BLACK);
-
-            editTextFirst.setHint("Email");
-            editTextSecond.setHint("Password");
-            editTextSecond.setVisibility(View.VISIBLE);
-            editTextThird.setVisibility(View.GONE);
-            editTextFourth.setVisibility(View.GONE);
+            logInBtn();
 
             continueButton.setOnClickListener(v1 -> {
                 LogIn();
             });
         });
-        searchButton.setOnClickListener(v -> {
-            registerButton.setBackgroundColor(Color.TRANSPARENT);
-            registerButton.setTextColor(Color.BLACK);
-            logInButton.setBackgroundColor(Color.TRANSPARENT);
-            logInButton.setTextColor(Color.BLACK);
-            searchButton.setBackgroundColor(Color.BLACK);
-            searchButton.setTextColor(Color.WHITE);
-
-            editTextFirst.setHint("Type artist name here");
-            editTextThird.setVisibility(View.GONE);
-            editTextSecond.setVisibility(View.GONE);
-            editTextFourth.setVisibility(View.GONE);
-
-            continueButton.setOnClickListener(v13 -> {
-                Search();
-            });
-        });
-
 
     }
 
-    private void Search() {
 
-    }
 
-    public void init(){
+    public void init() {
         imageLogo = findViewById(R.id.imageLogo);
         fadeIn = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fade_in);
         registerButton = findViewById(R.id.registerButton);
         logInButton = findViewById(R.id.logInButton);
-        searchButton = findViewById(R.id.searchButton);
         editTextFirst = findViewById(R.id.editTextFirst);
         editTextSecond = findViewById(R.id.editTextSecond);
         editTextThird = findViewById(R.id.editTextThird);
@@ -121,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         continueButton = findViewById(R.id.continueButton);
     }
 
-    void Register(){
+    void Register() {
         String url = "http://10.0.2.2:3000/register";
         String convertedFirstName = editTextFirst.getText().toString().trim();
         String convertedLastName = editTextSecond.getText().toString().trim();
@@ -129,33 +101,47 @@ public class MainActivity extends AppCompatActivity {
         String convertedPassword = editTextFourth.getText().toString().trim();
         String convertedPasswordAgain = editTextFifth.getText().toString().trim();
         Gson gson = new Gson();
-        NewUser user = new NewUser(convertedFirstName, convertedLastName, convertedEmail, convertedPassword, convertedPasswordAgain );
+        NewUser user = new NewUser(convertedFirstName, convertedLastName, convertedEmail, convertedPassword, convertedPasswordAgain);
         RequestTask task = new RequestTask(url, "POST", gson.toJson(user));
         task.execute();
     }
 
-    void LogIn(){
+    void LogIn() {
         String url = "http://10.0.2.2:3000/login";
         String email = editTextFirst.getText().toString().trim();
         String password = editTextSecond.getText().toString().trim();
 
-        if (email.isEmpty() || password.isEmpty()){
+        if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Minden mezőt ki kell tölteni", Toast.LENGTH_SHORT).show();
-        }
-        else if (!email.contains("@")){
+        } else if (!email.contains("@")) {
             Toast.makeText(this, "Nem megfelelő az email", Toast.LENGTH_SHORT).show();
-        }
-        else if(password.toString().length() < 8){
+        } else if (password.toString().length() < 8) {
             Toast.makeText(this, "A jelszónak legalább 8 karakternek kell lennie", Toast.LENGTH_SHORT).show();
         }
 
-        Login user = new Login( email, password);
+        Login user = new Login(email, password);
         Gson jsonConverter = new Gson();
-        RequestTask task = new RequestTask(url, "POST", jsonConverter.toJson(user));
-        task.execute();
+        RequestTask task2 = new RequestTask(url, "POST", jsonConverter.toJson(user));
+        task2.execute();
         Toast.makeText(MainActivity.this, "Sikeres bejelentkezes", Toast.LENGTH_SHORT).show();
     }
 
+    public void logInBtn() {
+        registerButton.setBackgroundColor(Color.TRANSPARENT);
+        registerButton.setTextColor(Color.BLACK);
+        logInButton.setBackgroundColor(Color.BLACK);
+        logInButton.setTextColor(Color.WHITE);
+
+
+        editTextFirst.setHint("Email");
+        editTextSecond.setHint("Password");
+        editTextFirst.setText("");
+        editTextSecond.setText("");
+        editTextSecond.setVisibility(View.VISIBLE);
+        editTextThird.setVisibility(View.GONE);
+        editTextFourth.setVisibility(View.GONE);
+        editTextFifth.setVisibility(View.GONE);
+    }
 
     private class RequestTask extends AsyncTask<Void, Void, Response> {
         String requestUrl;
@@ -187,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
             } catch (IOException e) {
-               Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
             }
             return response;
         }
@@ -202,23 +188,34 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(response);
             Gson converter = new Gson();
             if (response.getResponseCode() >= 400) {
-                Toast.makeText(MainActivity.this,"Hiba történt a kérés feldolgozása során", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Hiba történt a kérés feldolgozása során", Toast.LENGTH_SHORT).show();
                 Log.d("onPostExecuteError:", response.getContent());
-            }
-            else{
-                Toast.makeText(MainActivity.this, "Sikeres", Toast.LENGTH_SHORT).show();
-                Log.d("Sikeres:", response.getContent());
-                Intent intent = new Intent(MainActivity.this, Home.class);
-                startActivity(intent);
-                finish();
-            }
-            switch (requestType) {
-                case "GET":
-                    break;
-                case "POST":
-                    break;
+            } else {
+                switch (requestType) {
+                    case "GET":
+                        break;
+                    case "POST":
+                        if (requestUrl.equals("http://10.0.2.2:3000/login")) {
+                            Token token = converter.fromJson(
+                                    response.getContent(), Token.class);
+                            String tokenString = token.getToken();
+                            SharedPreferences sharedPreferences = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("token", tokenString);
+                            editor.commit();
+                            Intent intent = new Intent(MainActivity.this, Home.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(MainActivity.this, "Sikeres regisztracio", Toast.LENGTH_SHORT).show();
+                            Log.d("Sikeres:", response.getContent());
+                            logInBtn();
+                        }
+                        break;
+                }
             }
         }
-
     }
+
+
 }

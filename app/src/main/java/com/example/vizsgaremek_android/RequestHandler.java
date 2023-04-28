@@ -21,18 +21,6 @@ public class RequestHandler {
         return getResponse(conn);
     }
 
-    public static Response put(String url, String data) throws IOException {
-        HttpURLConnection conn = setupConnection(url);
-        conn.setRequestMethod("PUT");
-        addRequestBody(conn, data);
-        return getResponse(conn);
-    }
-
-    public static Response delete(String url) throws IOException {
-        HttpURLConnection conn = setupConnection(url);
-        conn.setRequestMethod("DELETE");
-        return getResponse(conn);
-    }
 
     private static void addRequestBody(HttpURLConnection conn, String data) throws IOException {
         conn.setRequestProperty("Content-Type", "application/json");

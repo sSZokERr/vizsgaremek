@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "766267747193",
+    "project_id": "vernissage-b8feb",
+    "storage_bucket": "vernissage-b8feb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766267747193:android:2cffe9f35ec818e4e31da8",
+        "android_client_info": {
+          "package_name": "com.example.vizsgaremek_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "766267747193-95u93tl5qcjltk65vjer8i9c6omegna9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfIByQtU3u7JjpEwQFAVP1Kb8Br1hNT78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "766267747193-95u93tl5qcjltk65vjer8i9c6omegna9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
