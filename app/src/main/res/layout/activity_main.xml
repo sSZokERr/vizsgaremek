@@ -50,16 +50,6 @@
                 android:textSize="12dp"
                 android:textColor="@color/black"
                 android:layout_margin="10dp"/>
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:text="Search"
-                android:id="@+id/searchButton"
-                android:fontFamily="@font/arial"
-                android:textSize="12dp"
-                android:textColor="@color/black"
-                android:layout_margin="10dp"/>
 
         </LinearLayout>
 
@@ -73,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
+            android:inputType="textPassword"
             android:id="@+id/editTextSecond"
             android:fontFamily="@font/arial"/>
         <EditText
